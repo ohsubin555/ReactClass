@@ -1,0 +1,579 @@
+1. 파일생성
+2. visual studio
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Class\ReactClass> code .
+PS C:\Class\ReactClass>
+
+1. new 터미널 클릭
+
+#### React 개요
+
+- 개발 주체: Meta(구 Facebook)를 중심으로 개발
+- 종류: JavaScript UI 라이브러리
+- 주요 목적: 사용자 인터페이스 개발
+- 주요 언어: JavaScript 또는 TypeScript
+- 주요 개념: 컴포넌트, JSX, Props, State, 이벤트 처리
+
+공식 사이트 : https://react.dev/
+
+#### React의 주요 특징
+
+컴포넌트(Component)   -  화면을 재사용 가능한 작은 단위로 분리
+JSX -  JavaScript 코드 안에서 HTML과 유사한 문법으로 화면 작성
+Props  -  부모 컴포넌트에서 자식 컴포넌트로 데이터 전달
+State  - 컴포넌트가 관리하는 데이터이며 변경 시 화면 업데이트
+선언형 UI - 화면이 어떤 상태에서 어떻게 보여야 하는지 표현
+Virtual DOM - 화면 변경 사항을 효율적으로 반영하는 데 활용되는 기술적 개념
+
+#### 
+
+구분                        Spring Boot 개발                  React 개발
+주요 언어                 Java                                        JavaScript
+개발 도구                 STS / IntelliJ                         VS Code
+실행 환경 및 도구   JDK                                         Node.js (https://nodejs.org/ko)
+의존성 관리             Maven / Gradle                    npm
+개발 서버 실행        bootRun 등                           npm run dev
+
+1. https://nodejs.org/ko
+
+1. Vite
+
+1) React 프로젝트를 빠르게 시작하고 개발 서버를 실행하며 배포용파일을 빌드할 때 사용하는 도구
+
+2)사이트: https://vite.dev/
+
+1. React 동작 원리
+- Virtual DOM 을 생성해서 화면을 효율적으로 관리
+- 브라우저에 생성되는  DOM을 직접 조작하는 대신 메모리 상의 가상 DOM을 생성하여 필요한 모든 조작을 수행한 후 브라우저DOM에 변경 사항을 적용한다.
+- React는 어떤 변경사항이 있는지 파악 후 필요한 부분만 변경한다.
+1.  React  시작
+- node -v , npm -v (설치확인)
+- 
+
+PS C:\Class\ReactClass> node -v
+v24.21.0
+PS C:\Class\ReactClass> npm -v
+npm : 이 시스템에서 스크립트를 실행할 수 없으므로 C:\Program Files\nodejs\npm.ps1 파일을 로드할 수 없습니다
+. 자세한 내용은 about_Execution_Policies(https://go.microsoft.com/fwlink/?LinkID=135170)를 참조하십시오.
+위치 줄:1 문자:1
+
+- npm -v
+- Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
+PS C:\Class\ReactClass> where .exe node
+PS C:\Class\ReactClass> where.exe node
+C:\Program Files\nodejs\node.exe
+PS C:\Class\ReactClass> npm -v
+
+- 빌드도구설치
+
+npm install -g create-vite
+
+1. React application create.
+- 
+    1. `npm create vite@latest basic -- --template react`
+    2. `npm create vite@latest my-react-app -- --template react`
+
+PS C:\Class\ReactClass> npm create vite@latest basic -- --template react
+Need to install the following packages:
+create-vite@9.2.1
+Ok to proceed? (y) y
+
+> npx
+create-vite basic --template react
+> 
+
+│
+◇  Which linter to use?
+│  Oxlint
+│
+◇  Install with npm and start now?
+│  Yes
+│
+◇  Scaffolding project in C:\Class\ReactClass\basic...
+│
+◇  Installing dependencies with npm...
+
+added 24 packages, and audited 25 packages in 6s
+
+9 packages are looking for funding
+run `npm fund` for details
+
+found 0 vulnerabilities
+│
+◇  Starting dev server...
+
+> basic@0.0.0 dev
+vite
+> 
+
+VITE v8.3.4  ready in 636 ms
+
+➜  Local:   http://localhost:5173/
+➜  Network: use --host to expose
+➜  press h + enter to show help
+
+PS C:\Class\ReactClass> cd basic
+PS C:\Class\ReactClass\basic> npm run dev
+
+> basic@0.0.0 dev
+vite
+> 
+
+VITE v8.3.4  ready in 139 ms
+
+➜  Local:   http://localhost:5173/
+➜  Network: use --host to expose
+➜  press h + enter to show help
+
+1. Hello word 출력
+- src/App.jsx
+
+```jsx
+function App() {
+  
+
+  return (
+     <div className='App'>
+       <h1>Hello Word</h1>
+     </div>
+  )
+}
+```
+
+새로고침 안해도 됨, 페이지소스 보기시 index.html 단일 페이지 만 보임. (single page) 
+
+```html
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+```
+
+모든 태그를 렌더링 할 것. 
+
+main.jsz
+
+```jsx
+createRoot(document.getElementById('root')).render(
+  <StrictMode> //개발자 모드
+    <App />    JSX 컴포넌트
+  </StrictMode>,
+  
+  
+  
+  1) class 
+
+class Car{ // 클래스명은 대문자로 시작
+
+constructor(name){//생성자 함수는 객체 생성시 자동으로 호출된다. 
+
+this.brnad = name;
+
+}
+
+// 메서드 선언
+
+present(){
+
+return ‘I have a’ + this.brand;
+}
+}
+const mycar = new Car(”BMW”);
+mycar.present();
+
+(2) 상속
+
+class Model extends Car{
+ constructor(name,mod){
+  super(name);
+  this.model = mod;
+ }
+ show(){
+  return this.present() + ' ' + this.model;
+ }
+}
+
+mycar2 = new Model('BMW' , 'mustang');
+mycar2.show();
+
+3) 화살표 함수
+hello = function(){
+ return "hello world";
+}
+
+hello = () => {
+return "hello world";
+}
+
+hello = () => "hello world";
+
+//매개변수 있는 경우
+
+hello = (name) => "hello" + name;
+
+// 매개변수가 있는 경우에는 괄호 생략 가능
+hello = name => "hello" + name;
+
+주의할 점 ) this
+
+4) 3가지 변수
+(1) var
+(2) const
+(3) let
+
+5) js 배열.map()
+(1) 배열의 각 요소에 대해 처리하는 함수, 새로운 요소의 배열을 생성하는 메서드
+ㅇconst m =[1,2,3];
+m.map(x=>x*2); //[2,4,6]
+((2) React 의 map 사용
+cconst nameArr = ['홍길동' , '서영학', '정창기'];
+function MyList(){
+ // JSX 컴포넌트 => js => HTML요소
+ return(
+   <ul>
+     {nameArr.map(name => <li key={name}>${name}<li>)}
+   </ul>
+ );
+}
+```
+
+(1) createRoot() root 컨테이너 안에 생성해서 
+
+(2) render()  HTML 로 렌더링해라. 
+
+(3) <App/>
+
+- 
+
+function App() {
+
+return (
+<div className='App'>
+<h1>Hello Word</h1>
+</div>
+)
+}
+
+1. 최신 버젼 React 설치
+npm i react@latest react-dom@latest
+2. ES6 문법  == ECMAScript6 약어 == ECMAScript2015 
+
+1. 객체 배열을 사용하는 map function..
+
+1. map(1,2,3) 메서드의 매개변수의 의미
+
+(1)currentValue: 현재 처리 중인요소
+
+(2) index: 현재 요소의 인덱스
+
+(3) array: 배열 자체
+
+---
+
+### 10. React 실습 예제 정리 (App.jsx ~ App04.jsx)
+
+> **참고**: `src/main.jsx`에서 `import App from './App04.jsx'`처럼 불러올 컴포넌트를 변경하여 브라우저(`http://localhost:5173/`) 화면을 확인합니다.
+
+#### (1) App.jsx - 기본 컴포넌트 뼈대 및 JSX 기본 출력
+* **설명**: 
+  * 가장 기본적인 함수형 컴포넌트(Functional Component) 구조입니다.
+  * JSX 문법으로 HTML과 유사하게 UI를 반환하며, HTML의 `class` 대신 `className` 속성을 사용합니다.
+  * `main.jsx`의 `createRoot(document.getElementById('root')).render(<App />)`를 통해 `index.html`의 `<div id="root">`에 마운트되어 화면에 출력됩니다.
+
+```jsx
+import { useState } from 'react'
+import heroImg from './assets/hero.png'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import './App.css'
+
+function App() {
+  return (
+     <div className='App'>
+       <h1>Hello Word</h1>
+     </div>
+  )
+}
+
+export default App
+```
+
+---
+
+#### (2) App02.jsx - 기본 배열과 map() 함수를 활용한 리스트 렌더링
+* **설명**: 
+  * JavaScript 배열 메서드인 `.map()`을 활용하여 배열 데이터를 동적인 `<ul>`, `<li>` 리스트로 변환합니다.
+  * JSX 내부에서 자바스크립트 변수 및 표현식을 사용할 때는 중괄호 `{ }`를 사용합니다.
+  * React에서 배열을 렌더링할 때는 각 항목을 고유하게 식별할 수 있도록 `key` 속성을 반드시 부여해야 합니다 (`key={name}`).
+
+```jsx
+import { useState } from 'react'
+import heroImg from './assets/hero.png'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import './App.css'
+
+function App() {
+  const nameArr = ['홍길동' , '서영학', '정창기'];
+
+  return(
+   <ul>
+     {nameArr.map(name => <li key={name}>${name}</li>
+      )}
+   </ul>
+ );
+}
+
+export default App
+```
+
+---
+
+#### (3) App03.jsx - 객체 배열(Object Array) 동적 렌더링
+* **설명**: 
+  * 실무 및 백엔드(Spring Boot 등) REST API 연동 시 가장 많이 사용되는 형태인 **객체 배열**(`[{id, name, age}, ...]`) 렌더링 실습입니다.
+  * 각 객체의 고유 식별자(PK)인 `user.id`를 `key` 값으로 지정(`key={user.id}`)하여 성능과 렌더링 안정성을 확보합니다.
+  * `user.name`, `user.age`처럼 점 표기법으로 객체 속성에 접근하여 화면에 바인딩합니다.
+
+```jsx
+import { useState } from 'react'
+import heroImg from './assets/hero.png'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import './App.css'
+
+function App() {
+ const userArr = [
+  {id:1, name:'Jhon', age:20},
+  {id:2, name:'admin', age:15},
+  {id:3, name:'hong', age:25}
+ ];
+
+  return(
+   <ul>
+     {userArr.map(user => <li key={user.id}>{user.name}/{user.age}</li>
+      )}
+   </ul>
+ );
+}
+
+export default App
+```
+
+---
+
+#### (4) App04.jsx - map() 함수의 콜백 매개변수 (currentValue, index, array) 활용
+* **설명**: 
+  * `Array.prototype.map()`의 콜백 함수에 전달되는 3가지 매개변수를 직접 확인하는 예제입니다:
+    1. `currentValue` (`name`): 현재 순회 중인 배열 요소의 값
+    2. `index`: 현재 요소의 인덱스 번호 (고유 id가 마땅치 않을 때 `key={index}`로 활용 가능)
+    3. `array`: 순회 대상인 원본 배열 전체
+
+```jsx
+import { useState } from 'react'
+import heroImg from './assets/hero.png'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import './App.css'
+
+function App() {
+  const nameArr = ['홍길동' , '서영학', '정창기'];
+
+   return (
+    <ul>
+      {nameArr.map((name, index, array) => (
+        <li key={index}>
+          Name: {name} / Array: {array}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default App
+```
+
+
+8..  구조분해 할당: 객체, 배열에서 값을 추출하여 별도의 변수에 저장할 수 있게 하는   JS 기능
+
+ㄴ 리액트에서 속성(props), 훅(hooks), 상태관리와 함꼐 자주 사용된다.
+
+ㄴ React 코드를 더 간결하게 처리할 수 있다. 
+
+(1) ex
+
+```jsx
+const nameArr = ['arr', 'bbb', 'ccc'];
+const name1 = nameArr[0];
+const name2 = nameArr[1];
+const name3 = nameArr[2];
+
+```
+
+(2) 예
+
+```jsx
+const nameArr = ['arr', 'bbb', 'ccc'];
+const [name1, name2, name3] = nameArr;
+//구조분해할당할때 순서.. 
+
+```
+
+(3) 예
+
+```jsx
+const nameArr = ['arr', 'bbb', 'ccc'];
+const name1 = nameArr[0];
+const name3 = nameArr[2];
+
+const [name1, , name3] = nameArr;
+```
+
+(4) ex
+
+```jsx
+function getDate(dat) {
+ const y = dat.getFullYear();
+ const m = dat.getMonth() + 1;
+ const d = dat.getDate();
+ 
+ return [y,m,d];
+ 
+}
+const [yeat, month,day] = getDate(new Date());
+```
+9. 구조분해 할당: 객체
+
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 50
+};
+const fname = person.firstName;
+:
+:
+let {firstName, lastName, age} = person;
+let {lastName, firstName, age} = person; //객체 배열은 순서가 중요하지 않음.
+
+let { firstName} = person;
+{lastName, firstName, gender = trune} = person;// 없는 항목도 추가가능
+
+10. 중첩된 객체의 구조분해 할당
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 50,
+  car: {
+    brand: 'Ford',
+    model: 'Mustang',
+  }
+};
+
+let{firstName, car : {brand, model}} = person;
+
+구조분해할
+/*
+//컴포넌트
+function Greeting() {
+  return (
+    <h1>Hello Word~~</h1>
+  )
+}
+*/
+/*2
+function Greeting(props) { //속성을 다 받음
+  return (
+    <h1>Hello Word {props.name}/{props.age}~~</h1>
+  )
+}
+*/
+
+function Greeting({name}) { //속성을 다 받음
+  return (
+    <h1>Hello Word {name}~~</h1>
+  )
+}
+//App컴포넌트 
+function App() {
+
+
+  return (
+    <Greeting name="Hong" age={20} />
+  );
+}
+
+export default App
+
+12. useState 훅 구조분해
+//App컴포넌트 
+function App() {
+
+  const [count, setCount] = useState(0);
+
+
+  return (
+    <button onClick={()=> setCount(count+1)}>Count: {count}</button>
+  );
+}
+
+13. spread 연산자 : ...
+ ㄴ 기존 배열, 객체의 전체 또는 일부를 다른 배열, 객체로 복사하는 연산자
+ (1) const m = [1,2,3];
+     const n = [4,5,6]; 
+
+     const mn = [...m, ...n]; // [1,2,3,4,5,6]     
+     
+ (2) const m = [1,2,3,4,5,6];
+     const [one, two, ...rest] = m;
+ (3) 객체에도 스프레드 연산자 사용
+ const car = {
+  brand: 'Ford',
+  model: 'Mustang',
+  color: 'red'
+}
+
+const car_more = {
+  type: 'car',
+  year: 2021, 
+  color: 'yellow'
+}
+
+const mycar = {...car, ...car_more}; 
+
+14. 모듈
+(1) js 모듈을 사용하면 코드를 여러개의 파일로 분리할 수 있다. 
+(2) 코드 베이스를 유지 관리 하기 쉬워진다. 
+(3) ES 모듈은 import 구문 및 export 사용
+  ㄱ.import
+   import {name, age} from "./person.js";
+   
+  ㄴ.export
+    - 어떤 파일에서든 함수, 변수를 내보낼 수 있다. 
+    - 명명된 내보내기 
+      export const name = "hong";
+      export const age = 30;
+
+     const name = "hong";
+     const age = 30;
+     export {name,age};
+
+  -       기본 내보내기
+    ex) 
+    const hello = () => {
+      return("안녕");
+    }
+
+    export default hello;
+(4) App04.jsx 
+function Greeting(){}// JSX 컴포넌트 => Greeting.jsx 파일 export
+function App(){}// import사용
+
+install
+ES7+ React/Redux/React-Native snippets
+Path Intellisense
+Auto Rename Tag
+
