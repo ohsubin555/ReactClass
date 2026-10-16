@@ -52,36 +52,34 @@ function ProductList() {
     }
   ];
 
+  
+
   return (
     <>
-      <h1>일반 상품</h1>
-      <div
-        style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
-      >
-        {
-          // list.map(item => <div>{item.name}</div>)
-          list.map((item) => (
-            <Product key={item.seq} name={item.name} price={item.price}>
-              <p>색상: {item.color}</p>
-              <button onClick={() => alert(`상품번호: ${item.seq}\n상품명: ${item.name}`)}>
-                구매하기
-              </button>
-            </Product>
-          ))
-        }
+      <h1>일반상품</h1>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {list.map((item) => (
+          <Product key={item.seq}
+            seq={item.seq}
+            name={item.name}
+            price={item.price}
+            color={item.color}
+          >
+            <p>색상: {item.color}</p>
+          </Product>
+        ))}
       </div>
 
-      <h2>특별 상품</h2>
-      <div
-        style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
-      >
+      <h1>특별상품</h1>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {clist.map((item) => (
-          <Product key={item.seq} name={item.name} price={item.price}>
+          <Product key={item.seq}
+            seq={item.seq}
+            name={item.name}
+            price={item.price}
+          >
             <img src={item.img} alt={item.name} />
-            <p>
-              특별 할인 상품입니다. 오늘부터 {item.priod}일간 20% 할인을
-              진행합니다.
-            </p>
+            <p style={{ color: 'red' }}>특가 기간: {item.priod}일</p>
           </Product>
         ))}
       </div>
